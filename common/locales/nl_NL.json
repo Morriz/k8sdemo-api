@@ -1,0 +1,23 @@
+{
+	"One or more errors have occurred:": "Één of meerdere problemen deden zich voor:",
+	"Your verification code is: %s": "Je verificatie code is: %s",
+	"The App Team": "Het YourCom Team",
+	"Welcome to YourCom": "Welkom bij YourCom",
+	"Login failed": "Login mislukt",
+	"failure: reason unknown": "operatie mislukt: reden onbekend",
+	"authentication failed: reason unknown": "authenticatie mislukt: reden onbekend",
+	"authentication failed: user not found": "authenticatie mislukt: gebruiker niet gevonden",
+	"authentication failed: session not found": "authenticatie mislukt: sessie niet gevonden",
+	"authentication failed: session expired": "authenticatie mislukt: sessie verlopen",
+	"authentication failed: wrong credentials provided": "authenticatie mislukt: verkeerde gegevens opgegeven",
+	"registration failed: user data exists (%s)": "registratie mislukt: gebruiker data bestaat al (%s)",
+	"verification failed: reason unknown": "verificatie mislukt: reden onbekend",
+	"sending email failed: reason unknown": "zenden email mislukt: reden onbekend",
+	"login failed: wrong credentials provided": "login mislukt: verkeerde gegevens opgegeven",
+	"login failed: the email has not been verified": "login mislukt: het e-mailadres is nog niet geverifiëerd",
+	"username or email is required": "username of email is verplicht",
+	"address validation failed:\n%s": "adres validatie mislukt:\n%s",
+	"Reset your password": "Reset je wachtwoord",
+	"failure: forbidden": "operatie mislukt: verboden",
+	"failure: bad password (%s)": "operatie mislukt: bad password (%s)"
+}

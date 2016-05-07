@@ -1,0 +1,5 @@
+{
+  "verbose": true,
+  "ignore": [".idea", "^_"],
+  "ext": "js json ejs"
+}

@@ -1,0 +1,60 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "../common/models/address",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "AccessToken": {
+    "dataSource": "mongo",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "mongo",
+    "public": false
+  },
+  "Email": {
+    "dataSource": "emailDs"
+  },
+  "RoleMapping": {
+    "dataSource": "mongo",
+    "public": false
+  },
+  "Role": {
+    "dataSource": "mongo",
+    "public": false
+  },
+  "AppUser": {
+    "dataSource": "mongo",
+    "public": true,
+    "options": {
+      "emailVerificationRequired": true
+    }
+  },
+  "Account": {
+    "dataSource": "mongo",
+    "public": true
+  },
+  "Address": {
+    "dataSource": "mongo",
+    "public": true
+  },
+  "AddressEU": {
+    "dataSource": "mongo",
+    "public": false
+  },
+  "Container": {
+    "dataSource": "files",
+    "public": true
+  }
+}

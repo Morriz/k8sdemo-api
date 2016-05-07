@@ -1,0 +1,42 @@
+{
+  "name": "AddressEU",
+  "strict": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "countryCode": {
+      "type": "string",
+      "required": true,
+      "default": "nl_NL"
+    },
+    "city": {
+      "type": "string",
+      "required": true
+    },
+    "houseNumber": {
+      "type": "number",
+      "required": true
+    },
+    "houseNumberAddition": {
+      "type": "string",
+      "required": false
+    },
+    "residenceType": {
+      "type": "string",
+      "required": false
+    },
+    "street1": {
+      "type": "string",
+      "required": true
+    },
+    "street2": {
+      "type": "string",
+      "required": false
+    },
+    "zipCode": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

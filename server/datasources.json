@@ -1,0 +1,35 @@
+{
+  "mem": {
+    "name": "mem",
+    "connector": "memory"
+  },
+  "mongo": {
+    "database": "app",
+    "name": "mongo",
+    "connector": "mongodb"
+  },
+  "emailDs": {
+    "name": "emailDs",
+    "defaultForType": "mail",
+    "connector": "mail",
+    "transports": [
+      {
+        "type": "smtp",
+        "port": 2525,
+        "host": "smtp.mandrillapp.com",
+        "secure": false,
+        "auth": {
+          "user": "you@your.com"
+        }
+      }
+    ]
+  },
+  "files": {
+    "name": "files",
+    "allowedContentTypes": ["image/jpg", "image/jpeg", "image/png"],
+    "maxFileSize": 10485760,
+    "connector": "loopback-component-storage",
+    "provider": "amazon",
+    "region": "eu-central-1"
+  }
+}

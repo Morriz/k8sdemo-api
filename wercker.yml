@@ -1,0 +1,85 @@
+# We use official docker containers, so let's get the latest from node
+box: node:5.10
+services:
+    - mongo:3.2
+# Defining the dev pipeline
+dev:
+  steps:
+    - script:
+        code: export NODE_ENV='production'
+    - npm-install
+    - internal/watch:
+        code: npm start
+        reload: true
+# Build definition
+build:
+  steps:
+    - script:
+        name: echo nodejs information
+        code: |
+          echo "node location: $(which node)"
+          echo "npm location: $(which npm)"
+          echo "node version $(node -v) running"
+          echo "npm version $(npm -v) running"
+    - npm-install
+    - script:
+        name: run build
+        code: npm run build
+    - npm-test
+    - script:
+        name: prune node_modules for production
+        code: npm prune --production
+    - script:
+        name: copy build artifacts
+        code: cp -r * $WERCKER_OUTPUT_DIR
+  after-steps:
+    - slack-notifier:
+        url: $SLACK_URL
+        channel: development
+        username: werckerbot
+deploy:
+  box: node:5.10-slim
+  after-steps:
+    - slack-notifier:
+        url: $SLACK_URL
+        channel: development
+        username: werckerbot
+  # Targets:
+  rolling-update:
+    - internal/docker-push:
+        username: $REG_USERNAME
+        password: $REG_PASSWORD
+        repository: prod-reg.your.com/app-api
+        registry: http://prod-reg.your.com
+        tag: $WERCKER_GIT_COMMIT,latest
+        working-dir: $WERCKER_SOURCE_DIR
+        cmd: ./run.sh
+    - script:
+        name: copy config
+        code: printf "$KUBE_CONFIG_PROD" > $WERCKER_OUTPUT_DIR/kubeconfig
+    - morriz/kube-deploy@0.1.9:
+        verbose: true
+        debug: true
+        server: $KUBE_MASTER_PROD
+        deployment: api
+        tag: $WERCKER_GIT_COMMIT
+        raw-global-args: --kubeconfig=$WERCKER_OUTPUT_DIR/kubeconfig
+  rolling-update-acceptance:
+    - internal/docker-push:
+        username: $REG_USERNAME
+        password: $REG_PASSWORD
+        repository: acc-reg.your.com/app-api
+        registry: https://acc-reg.your.com
+        tag: $WERCKER_GIT_COMMIT,latest
+        working-dir: $WERCKER_SOURCE_DIR
+        cmd: ./run.sh
+    - script:
+        name: copy config
+        code: printf "$KUBE_CONFIG_ACC" > $WERCKER_OUTPUT_DIR/kubeconfig
+    - morriz/kube-deploy@0.1.9:
+        verbose: true
+        debug: true
+        server: $KUBE_MASTER_ACC
+        deployment: api
+        tag: $WERCKER_GIT_COMMIT
+        raw-global-args: --kubeconfig=$WERCKER_OUTPUT_DIR/kubeconfig

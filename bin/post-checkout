@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# to give gui apps access to user paths
+export PATH=/usr/local/bin:$PATH
+
+npm install

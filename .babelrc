@@ -1,0 +1,7 @@
+{
+  "ignore": [
+    "build/**/*.js"
+  ],
+  "presets": ["es2015", "stage-0"],
+  "plugins": ["add-module-exports", "syntax-object-rest-spread", "syntax-decorators"]
+}
